@@ -5,29 +5,11 @@ const dots = document.querySelectorAll('.dot');
 function showSlide(index) {
     if (index === currentSlide) return;
 
-    const current = slides[currentSlide];
-    const next = slides[index];
-
-    if (current) {
-        // Add blurring to current slide
-        current.classList.add('blurring');
-    }
-
-    // Set next slide initial state
-    next.style.transform = 'scale(0.8)';
-    next.style.opacity = '0';
-    next.classList.add('active');
-
-    setTimeout(() => {
-        if (current) {
-            current.classList.remove('active', 'blurring');
-        }
-        next.style.transform = 'scale(1)';
-        next.style.opacity = '1';
-        dots.forEach(dot => dot.classList.remove('active'));
-        dots[index].classList.add('active');
-        currentSlide = index;
-    }, 1000);
+    slides.forEach(slide => slide.classList.remove('active'));
+    slides[index].classList.add('active');
+    dots.forEach(dot => dot.classList.remove('active'));
+    dots[index].classList.add('active');
+    currentSlide = index;
 }
 
 function changeSlide(direction) {
